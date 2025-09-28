@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36327.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentacion", "Presentacion\Presentacion.csproj", "{C962D410-3459-4C00-9D0E-2FC377ABE406}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aplicacion", "Aplicacion\Aplicacion.csproj", "{B3CE7FBD-494F-4741-BC1F-DCE0A7DC2C77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{53449259-6E3F-4EF2-A7A9-FF691AA27162}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{9810D6FB-B769-4028-BEDA-231C853F655A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestructura", "Infraestructura\Infraestructura.csproj", "{EA538F72-BD8F-46AF-BD70-65698A4D09D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{D107F4C8-89CC-BEA8-D3D7-CA6B7733353D}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C962D410-3459-4C00-9D0E-2FC377ABE406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C962D410-3459-4C00-9D0E-2FC377ABE406}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C962D410-3459-4C00-9D0E-2FC377ABE406}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C962D410-3459-4C00-9D0E-2FC377ABE406}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3CE7FBD-494F-4741-BC1F-DCE0A7DC2C77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3CE7FBD-494F-4741-BC1F-DCE0A7DC2C77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3CE7FBD-494F-4741-BC1F-DCE0A7DC2C77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3CE7FBD-494F-4741-BC1F-DCE0A7DC2C77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53449259-6E3F-4EF2-A7A9-FF691AA27162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53449259-6E3F-4EF2-A7A9-FF691AA27162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53449259-6E3F-4EF2-A7A9-FF691AA27162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53449259-6E3F-4EF2-A7A9-FF691AA27162}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9810D6FB-B769-4028-BEDA-231C853F655A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9810D6FB-B769-4028-BEDA-231C853F655A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9810D6FB-B769-4028-BEDA-231C853F655A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9810D6FB-B769-4028-BEDA-231C853F655A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA538F72-BD8F-46AF-BD70-65698A4D09D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA538F72-BD8F-46AF-BD70-65698A4D09D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA538F72-BD8F-46AF-BD70-65698A4D09D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA538F72-BD8F-46AF-BD70-65698A4D09D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {86331B9B-AD93-429C-896A-BC4E89F7E7D3}
+	EndGlobalSection
+EndGlobal
