@@ -1,5 +1,6 @@
 using Api.Inyecciones;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -24,26 +25,35 @@ builder.Services.AgregarDependencias(configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Add authenticator
-//builder.Services.AddAuthentication(options =>
-//{
-//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//}).AddJwtBearer(options =>
-//{
-//    options.Authority = "https://dev-il1rfxnypnw64cnu.us.auth0.com";
-//    options.Audience = "https://localhost:7187/swagger/index.html/api";
-//    options.Events = new JwtBearerEvents()
+//builder.Services.AddAuthentication("Bearer")
+//    .AddJwtBearer("Bearer", options =>
 //    {
-//        OnAuthenticationFailed = result =>
-//        {
-//            result.NoResult();
-//            result.Response.StatusCode = 401;
-//            result.Response.ContentType = "text/plain";
-//            return result.Response.WriteAsync(result.Exception.ToString());
-//        },
-//    };
-//});
+//        options.Authority = "https://dev-il1rfxnypnw64cnu.us.auth0.com";
+//        options.Audience = "https://localhost:7187/swagger/index.html/api";
+//    });
+
+builder.Services.AddAuthorization();
+
+// Add authenticator
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.Authority = "https://dev-il1rfxnypnw64cnu.us.auth0.com";
+    options.Audience = "https://localhost:7187";
+    //options.Events = new JwtBearerEvents()
+    //{
+    //    OnAuthenticationFailed = result =>
+    //    {
+    //        result.NoResult();
+    //        result.Response.StatusCode = 401;
+    //        result.Response.ContentType = "text/plain";
+    //        return result.Response.WriteAsync(result.Exception.ToString());
+    //    },
+    //};
+});
 
 //builder.Services.AddAuthorization(options =>
 //{
@@ -62,16 +72,19 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.UseCors("PoliticaCors");
 
-app.MapGet("/", context =>
-{
-    context.Response.Redirect("/swagger");
-    return Task.CompletedTask;
-});
+//app.MapGet("/", context =>
+//{
+//    context.Response.Redirect("/swagger");
+//    return Task.CompletedTask;
+//});
+
+app.MapGet("/api/usuario", [Authorize] () => "Autorizado");
 
 app.Run();

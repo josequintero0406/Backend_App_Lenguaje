@@ -16,6 +16,7 @@ namespace Infraestructura.Contextos
         }
 
         public DbSet<Usuario> usuario { get; set; }
+        public DbSet<Curso> curso { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,7 +25,12 @@ namespace Infraestructura.Contextos
                 entidad.HasKey(e => e.id_usuario);
                 entidad.HasIndex(e => e.id_usuario).IsUnique();
             });
+
+            modelBuilder.Entity<Curso>(entidad =>
+            {
+                entidad.HasKey(e => e.id_curso);
+                entidad.HasIndex(e => e.id_curso).IsUnique();
+            });
         }
-        
     }
 }

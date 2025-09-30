@@ -20,9 +20,11 @@ namespace Api.Inyecciones
 
             //Agregar los repositorios
             servicios.AddTransient<IUsuarioRepositorio, UsuarioRepositorio>();
+            servicios.AddTransient<ICursoRepositorio, CursoRepositorio>();
 
             //Agregar los servicios
             servicios.AddTransient<IUsuarioServicio, UsuarioServicio>();
+            servicios.AddTransient<ICursoServicio, CursoServicio>();
 
             servicios.AddSingleton<IConfiguration>(configuracion);
 

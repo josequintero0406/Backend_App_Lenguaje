@@ -44,10 +44,10 @@ namespace Infraestructura.Repositorios
 
         public async Task<Usuario> ModificarUsuario(Usuario usuario)
         {
-            var carro_existente = await _contexto.usuario.FindAsync(usuario.id_usuario);
-            if (carro_existente == null)
+            var usuario_existente = await _contexto.usuario.FindAsync(usuario.id_usuario);
+            if (usuario_existente == null)
                 return null!;
-            _contexto.Entry(carro_existente).CurrentValues.SetValues(usuario);
+            _contexto.Entry(usuario_existente).CurrentValues.SetValues(usuario);
             await _contexto.SaveChangesAsync();
             return await _contexto.usuario.FindAsync(usuario.id_usuario);
         }
