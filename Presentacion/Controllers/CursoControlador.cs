@@ -12,13 +12,15 @@ namespace Presentacion.Controllers
         /// Solo lectura
         /// </summary>
         private readonly ICursoServicio _cursoServicio;
+        private readonly ILogEventoServicio _logEventoServicio;
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="cursoServicio"></param>
-        public CursoControlador(ICursoServicio cursoServicio)
+        public CursoControlador(ICursoServicio cursoServicio, ILogEventoServicio logEventoServicio)
         {
             _cursoServicio = cursoServicio;
+            _logEventoServicio = logEventoServicio;
         }
 
         /// <summary>
@@ -42,6 +44,7 @@ namespace Presentacion.Controllers
         [ProducesResponseType(201)]
         public async Task<IActionResult> Insertar([FromBody] Curso curso)
         {
+            await _logEventoServicio.SendLogAsync($"Registro creado");
             return CreatedAtAction(nameof(Insertar), await _cursoServicio.InsertarCurso(curso));
         }
         /// <summary>
