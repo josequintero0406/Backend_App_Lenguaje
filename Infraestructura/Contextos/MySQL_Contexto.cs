@@ -17,7 +17,6 @@ namespace Infraestructura.Contextos
 
         public DbSet<Usuario> usuario { get; set; }
         public DbSet<Curso> curso { get; set; }
-        public DbSet<LogEvento> log_evento { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -25,6 +25,7 @@ namespace Api.Inyecciones
             //Agregar los servicios
             servicios.AddTransient<IUsuarioServicio, UsuarioServicio>();
             servicios.AddTransient<ICursoServicio, CursoServicio>();
+            servicios.AddTransient<IProductorEventoServicio, ProductorEventoServicio>();
 
             servicios.AddSingleton<IConfiguration>(configuracion);
 

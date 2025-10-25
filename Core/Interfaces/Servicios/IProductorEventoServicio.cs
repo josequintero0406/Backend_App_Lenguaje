@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Core.Interfaces.Servicios
 {
-    public interface ILogEventoServicio
+    public interface IProductorEventoServicio
     {
-        Task SendLogAsync(string message);
+        Task ProducirEvento(EventoCRUD eventoCRUD);
     }
 }

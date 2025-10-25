@@ -12,15 +12,15 @@ namespace Presentacion.Controllers
         /// Solo lectura
         /// </summary>
         private readonly ICursoServicio _cursoServicio;
-        private readonly ILogEventoServicio _logEventoServicio;
+        private readonly IProductorEventoServicio _productorEventoServicio;
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="cursoServicio"></param>
-        public CursoControlador(ICursoServicio cursoServicio, ILogEventoServicio logEventoServicio)
+        public CursoControlador(ICursoServicio cursoServicio, IProductorEventoServicio productorEventoServicio)
         {
             _cursoServicio = cursoServicio;
-            _logEventoServicio = logEventoServicio;
+            _productorEventoServicio = productorEventoServicio;
         }
 
         /// <summary>
@@ -44,8 +44,16 @@ namespace Presentacion.Controllers
         [ProducesResponseType(201)]
         public async Task<IActionResult> Insertar([FromBody] Curso curso)
         {
-            await _logEventoServicio.SendLogAsync($"Registro creado");
-            return CreatedAtAction(nameof(Insertar), await _cursoServicio.InsertarCurso(curso));
+            var resultado = await _cursoServicio.InsertarCurso(curso);
+            var eventoCRUD = new EventoCRUD
+            {
+                tipo_evento = "Inserción de datos",
+                entidad_afectada = curso.nombre,
+                id_usuario = curso.id_usuario.ToString(),
+                detalles = $"Se ha realizado una inserción de un curso con ID: {resultado.id_curso}"
+            };
+            await _productorEventoServicio.ProducirEvento(eventoCRUD);
+            return CreatedAtAction(nameof(Insertar), resultado);
         }
         /// <summary>
         /// Modificar
