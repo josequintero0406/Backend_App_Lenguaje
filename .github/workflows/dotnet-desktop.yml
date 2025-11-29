@@ -57,7 +57,7 @@ jobs:
 
     env:
       Solution_Name: Backend_App_Lenguaje.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
-      Wap_Project_Path: C:\Users\josem\source\repos\Backend_App_Lenguaje                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
+      Wap_Project_Path: /app                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
 
     steps:
     - name: Checkout
