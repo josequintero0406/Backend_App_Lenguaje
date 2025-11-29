@@ -1,0 +1,48 @@
+trigger:
+  branches:
+    include:
+      - develop
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  dotnetVersion: '8.x'
+  projectPath: '**/*.csproj'
+
+steps:
+          - task: UseDotNet@2
+            displayName: 'Instalar .NET SDK'
+            inputs:
+              version: $(dotnetVersion)
+              includePreviewVersions: false
+
+          - task: DotNetCoreCLI@2
+            displayName: 'Restaurar dependencias'
+            inputs:
+              command: 'restore'
+              projects: $(projectPath)
+
+          - task: DotNetCoreCLI@2
+            displayName: 'Compilar proyecto'
+            inputs:
+              command: 'build'
+              projects: $(projectPath)
+              arguments: '--configuration $(buildConfiguration) --no-restore'
+
+          - task: DotNetCoreCLI@2
+            displayName: 'Publicar artefactos'
+            inputs:
+              command: 'publish'
+              publishWebProjects: false
+              projects: $(projectPath)
+              arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+              zipAfterPublish: true
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Subir artefactos'
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'drop'
+              publishLocation: 'Container'
