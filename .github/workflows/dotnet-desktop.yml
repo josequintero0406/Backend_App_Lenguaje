@@ -35,54 +35,44 @@
 # For more information on GitHub Actions, refer to https://github.com/features/actions
 # For a complete CI/CD sample to get started with GitHub Action workflows for Desktop Applications,
 # refer to https://github.com/microsoft/github-actions-for-desktop-apps
-
 name: .NET Core Desktop
-
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
 jobs:
-
   build:
-
     strategy:
       matrix:
         configuration: [Debug, Release]
-
-    runs-on: windows-latest  # For a list of available runner types, refer to
-                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
-
+    runs-on: windows-latest  
     env:
-      Solution_Name: Backend_App_Lenguaje.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
-      Wap_Project_Path: /app                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
-
+      Solution_Name: Backend_App_Lenguaje.sln                         
+      Wap_Project_Path: /app                   
     steps:
     - name: Checkout
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    # Install the .NET Core workload
+    # Instalar .NET Core workload
     - name: Install .NET Core
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
 
-    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    # Agregar compilador MSBuild de .NET
     - name: Setup MSBuild.rsp
       uses: microsoft/setup-msbuild@v2
 
-
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
+    # Restaurar la aplicación para posibles fallos en la compilación
     - name: Restore the application
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
 
-    # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
+    # Crear y subir los atefactos de construcción
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
